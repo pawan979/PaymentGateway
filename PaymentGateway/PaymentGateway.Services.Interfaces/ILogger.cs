@@ -6,6 +6,6 @@ namespace PaymentGateway.Services.Interfaces
 {
     public interface ILogger
     {
-        public void LogError(string Message);
+        void LogError(string Message);
     }
 }

@@ -11,11 +11,11 @@ namespace PaymentGateway.Infrastructure.API.Controllers
     {
         // GET: api/ProcessPayment
         [HttpGet]
-        public TransactionSummary Get(string transactionId)
+        public OutgoingTransaction Get(string transactionId)
         {
             SystemLog log = new SystemLog();
 
-            TransactionSummary response = null;
+            OutgoingTransaction response = null;
 
             try
             {

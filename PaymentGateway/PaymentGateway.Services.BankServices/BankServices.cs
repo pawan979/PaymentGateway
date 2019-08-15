@@ -1,13 +1,14 @@
 ﻿using PaymentGateway.Domain.Entities;
 using PaymentGateway.Services.Bank;
 using PaymentGateway.Services.Interfaces;
+using PaymentGateway.Services.Log;
 using System;
 
 namespace PaymentGateway.Services.BankServices
 {
     public class BankServices
     {
-        public BankResponse ProcessBankPayment(IBank bank, CardDetails transaction)
+        public BankResponse ProcessBankPayment(IBank bank, IncomingTransaction transaction)
         {
             BankResponse response;
             try
@@ -44,6 +45,7 @@ namespace PaymentGateway.Services.BankServices
                             break;
 
                         default:
+                            bank = new StandardBank(new SystemLog());
                             break;
                     }
                 }

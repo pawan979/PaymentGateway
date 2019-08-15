@@ -2,11 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PaymentGateway.Services.Common\PaymentGateway.Services.Common.csproj" />
     <ProjectReference Include="..\PaymentGateway.Services.Interfaces\PaymentGateway.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\PaymentGateway.Services.Log\PaymentGateway.Services.Log.csproj" />
   </ItemGroup>
 
 </Project>

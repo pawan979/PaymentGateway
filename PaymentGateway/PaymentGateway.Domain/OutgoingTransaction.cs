@@ -4,9 +4,11 @@ using System.Text;
 
 namespace PaymentGateway.Domain.Entities
 {
-    public class BankResponse
+    public class OutgoingTransaction : Transaction
     {
-        public Guid TransactionId { get; set; }
+        public string TransactionId { get; set; }
         public int Status { get; set; }
+        public DateTime DateTime { get; set; }
+
     }
 }

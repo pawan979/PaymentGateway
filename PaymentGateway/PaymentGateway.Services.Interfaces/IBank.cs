@@ -7,6 +7,6 @@ namespace PaymentGateway.Services.Interfaces
 {
     public interface IBank
     {
-        public BankResponse ProcessPayment(CardDetails transaction);
+        BankResponse ProcessPayment(IncomingTransaction transaction);
     }
 }

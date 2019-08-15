@@ -3,15 +3,14 @@ using PaymentGateway.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace PaymentGateway.Services.Bank
 {
-    public class MCB : IBank
+    public class StandardBank : IBank
     {
         private readonly ILogger _Log;
 
-        public MCB(ILogger log)
+        public StandardBank(ILogger log)
         {
             _Log = log;
         }
@@ -50,5 +49,6 @@ namespace PaymentGateway.Services.Bank
 
             return response;
         }
+
     }
 }

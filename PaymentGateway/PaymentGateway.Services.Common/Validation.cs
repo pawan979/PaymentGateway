@@ -5,29 +5,25 @@ namespace PaymentGateway.Services.Common
 {
     public static class Validation
     {
-        public static bool IsCardExpired(ILogger log , DateTime date)
+        public static bool IsCardExpired(ILogger log, DateTime date)
         {
             bool valid = false;
+
             try
             {
-                 if(date != DateTime.MinValue)
+                date = date.AddMonths(1).AddMilliseconds(-1);
+
+                if (DateTime.Now <= date)
                 {
-                    if(DateTime.Now <= date)
-                    {
-                        valid = true;
-                    }
-                    else
-                    {
-                        log.LogError(Constants.CardExipred);
-                    }
+                    valid = true;
                 }
                 else
                 {
-                    log.LogError(Constants.DateNotAvailable);
-                    return valid;
+                    log.LogError(Constants.CardExipred);
                 }
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.LogError(string.Format(Constants.DateValidationError, ex.StackTrace));
             }

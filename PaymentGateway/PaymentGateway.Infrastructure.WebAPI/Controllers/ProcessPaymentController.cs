@@ -11,7 +11,7 @@ namespace PaymentGateway.Infrastructure.API.Controllers
     public class ProcessPaymentController : ControllerBase
     {
         [HttpPost]
-        public BankResponse Post([FromBody] CardDetails transaction)
+        public BankResponse Post([FromBody] IncomingTransaction transaction)
         {
             SystemLog log = new SystemLog();
 
@@ -19,15 +19,20 @@ namespace PaymentGateway.Infrastructure.API.Controllers
 
             try
             {
-                IBank bank = Services.BankServices.BankServices.GetBank(transaction.CardNumber); 
+                IBank bank = Services.BankServices.BankServices.GetBank(transaction.CardNumber);
+                
                 response = bank.ProcessPayment(transaction);
+
+                Services.Common.CommonMethods.SaveTransaction(log, transaction, response);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.LogError(ex.Message);
             }
 
             return response;
         }
+       
     }
 }
